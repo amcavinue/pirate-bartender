@@ -1,5 +1,8 @@
 'use strict';
 
+/***************
+Variables and Objectss
+****************/
 var questions = {
         strong: 'Do ye like yer drinks strong?',
         salty: 'Do ye like it with a salty tang?',
@@ -37,12 +40,16 @@ var questions = {
     preferences = {};
 
 var Bartender = function() {
-    this.createDrink = function() {
-
-    };
 }
 
+Bartender.prototype.createDrink = function() {
+}
+
+/***************
+Document Ready
+****************/
 $(function() {
+    // Put the questions into the DOM.
     for (var question in questions) {
         var html = '<li><input type="checkbox" name="' + question + '" />' + questions[question] + '</li>';
         $('#js-drink-questions').append(html);
@@ -53,6 +60,7 @@ $(function() {
         e.preventDefault();
         var checked = 0;
 
+        // Put all the checkbox values into the preferences object.
         $('input[type="checkbox"]').each(function() {
             preferences[this.name] = $(this).is(':checked');
             if (preferences[this.name]) {
