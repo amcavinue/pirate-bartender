@@ -1,7 +1,7 @@
 'use strict';
 
 /***************
-Variables and Objectss
+Variables and Objects
 ****************/
 var questions = {
         strong: 'Do ye like yer drinks strong?',
@@ -39,16 +39,69 @@ var questions = {
     },
     preferences = {};
 
+/**
+ * Bartender class that takes orders from the
+ * user and makes drinks for them.
+ * @returns {object} New instance of the bartender object.
+ */
 var Bartender = function() {
 }
 
-Bartender.prototype.createDrink = function() {
+/**
+ * Outputs a drink with ingredients to the DOM.
+ * @param {object} preferences
+ */
+Bartender.prototype.createDrink = function(preferences) {
+    var usedIngredients = [];
+
+    $('#js-drink-result').empty();
+
+    for (var ingredient in preferences) {
+        if (preferences[ingredient]) {
+            var randIndex = Math.floor(Math.random() * ingredients[ingredient].length);
+
+            usedIngredients.push(ingredients[ingredient][randIndex]);
+
+            $('#js-drink-result').append('<li>' + usedIngredients[usedIngredients.length - 1] + '</li>');
+        }
+    }
+
+    this.createName(usedIngredients);
+
+    $('#js-order-form').hide();
+    $('#js-results').show();
+}
+
+/**
+ * Dynamically creates a name based on the ingredients used.
+ * @param {array} usedIngredients Array of strings with ingredient names.
+ */
+Bartender.prototype.createName = function(usedIngredients) {
+    var adjective = ['Awesome', 'Zesty', 'Delicious'][Math.floor(Math.random() * 3)],
+        noun = usedIngredients[Math.floor(Math.random() * usedIngredients.length)].match(/\s(\w+)$/ig)[0],
+        drinkName = titleCase(adjective + noun);
+
+    $('#js-results').prepend('<h2> Here\'s your ' + drinkName + '</h2>');
+}
+
+/**
+ * Converts a string to title case.
+ * https://medium.freecodecamp.com/three-ways-to-title-case-a-sentence-in-javascript-676a9175eb27#.900xxuy5c
+ * @param   {string}   str
+ * @returns {string} A string in title case.
+ */
+function titleCase(str) {
+    return str.toLowerCase().split(' ').map(function(word) {
+        return word.replace(word[0], word[0].toUpperCase());
+    }).join(' ');
 }
 
 /***************
 Document Ready
 ****************/
 $(function() {
+    var pirateBartender = new Bartender();
+
     // Put the questions into the DOM.
     for (var question in questions) {
         var html = '<li><input type="checkbox" name="' + question + '" />' + questions[question] + '</li>';
@@ -72,5 +125,7 @@ $(function() {
             alert("Yer gonna need at least one ingredient in yer drink matey!");
             return;
         }
+
+        pirateBartender.createDrink(preferences);
     });
 });
