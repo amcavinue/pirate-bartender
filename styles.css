@@ -1,0 +1,61 @@
+* {
+}
+
+body {
+    text-align: center;
+    line-height: 1.5em;
+    max-width: 960px;
+    margin: 0 auto;
+    font-family: 'Roboto', sans-serif;
+    color: #dee2f1;
+    background-image: url(https://i.ytimg.com/vi/ZPWt4UCemEQ/maxresdefault.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 100vh;
+}
+
+ul {
+    list-style-type: none;
+    text-align: left;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+h1 {
+    color: #f2fcff;
+    font-size: 2.5em;
+}
+
+.hidden {
+    display: none;
+}
+
+.order {
+    background-color: rgba(47, 47, 47, 0.9);
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 1em;
+}
+
+.order .drink-questions {
+    margin-bottom: 1em;
+}
+
+.order input[type="submit"] {
+    margin-bottom: 2em;
+}
+
+.results {
+    background-color: rgba(47, 47, 47, 0.9);
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 1em;
+}
+
+.results .drink-result {
+    text-align: left;
+    max-width: 300px;
+    margin-bottom: 2em;
+}

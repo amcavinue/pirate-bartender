@@ -81,7 +81,7 @@ Bartender.prototype.createName = function(usedIngredients) {
         noun = usedIngredients[Math.floor(Math.random() * usedIngredients.length)].match(/\s(\w+)$/ig)[0],
         drinkName = titleCase(adjective + noun);
 
-    $('#js-drink-result').prepend('<h2> Here\'s your ' + drinkName + '</h2>');
+    $('#js-results').prepend('<h2> Here\'s your ' + drinkName + '</h2>');
 }
 
 /**
